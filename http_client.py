@@ -7,7 +7,7 @@ from http_commons import nlc, to_bytes
 
 max_buffer_size = 1024
 
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 bnlc = nlc.encode()
 
@@ -194,7 +194,7 @@ def receive_response(sock: socket, method: str):
         return
     elif response:
         version, status_code, reason_phrase, remainder = extract_response_line(response)
-        if method == "HEAD" or status_code != "200":
+        if method == "HEAD":
             read_header_response(sock, response)
         else:
             headers, remainder = extract_headers(remainder)
@@ -226,22 +226,21 @@ def extract_headers(response: bytes) -> (dict[bytes, bytes], bytes):
     return headers, body
 
 
-# start_client()
+start_client()
 
-
-def test():
-    uri = 'www.google.com'
-    port = 80
-    method = 'GET'
-    path = '/'
-    body = None
-    ip = socket.gethostbyname(uri)
-
-    s = make_connection(ip, port)
-    request = create_request(method, uri, path, body)
-    logging.debug(request)
-    send_request(s, request)
-    receive_response(s, method)
-
-
-test()
+# def test():
+#     uri = 'localhost'
+#     port = 8080
+#     method = 'GET'
+#     path = '/'
+#     body = None
+#     ip = socket.gethostbyname(uri)
+#
+#     s = make_connection(ip, port)
+#     request = create_request(method, uri, path, body)
+#     logging.debug(request)
+#     send_request(s, request)
+#     receive_response(s, method)
+#
+#
+# test()

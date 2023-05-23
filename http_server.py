@@ -14,7 +14,7 @@ from http_commons import extract_headers, nlc, to_bytes
 host_port = 8080
 max_buffer_size = 1024
 
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 def start_server():
