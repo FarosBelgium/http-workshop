@@ -61,7 +61,7 @@ def split_uri(uri: str) -> (str, str):
     return uri, path
 
 
-def make_connection(uri: str, port: int) -> socket:
+def make_connection(ip: str, port: int) -> socket:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         logging.debug("Socket successfully created")
@@ -69,8 +69,8 @@ def make_connection(uri: str, port: int) -> socket:
         logging.debug("socket creation failed with error %s" % err)
         return
     # connecting to the server
-    s.connect((uri, port))  # host_ip
-    logging.debug(f"The socket has successfully connected to {uri}:{port}.")
+    s.connect((ip, port))  # host_ip
+    logging.debug(f"The socket has successfully connected to {ip}:{port}.")
     return s
 
 
